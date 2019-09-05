@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/e4_spag" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/esight4_bridgeminiapp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/esight4_main" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hmd_main_app" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ui_mvvm" vcs="Git" />
+  </component>
+</project>
