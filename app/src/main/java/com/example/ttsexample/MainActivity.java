@@ -96,7 +96,10 @@ public class MainActivity extends AppCompatActivity {
                 Italian: it
 
                 */
-                Log.i("BTN","button clicked: " + data);
+                Locale.setDefault(new Locale (data, ""));
+                textToSpeech.setLanguage( Locale.getDefault());
+
+                Log.i("SELECT","button clicked: " + Locale.getDefault().toString());
                 int speechStatus = textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null);
 
             }
