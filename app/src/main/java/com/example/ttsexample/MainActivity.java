@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -32,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
     private TextToSpeech textToSpeech;
     private Button button;
     private Button button1;
-    private Button button2;
     private EditText editText;
-    private CheckBox english;
-    private CheckBox canfr;
-    private CheckBox italian;
+    private RadioGroup radioLanguageGroup;
+    private Button selectButton;
+    private RadioButton radioLanguageButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.button);
         button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
         editText = (EditText) findViewById(R.id.et);
+        radioLanguageGroup = (RadioGroup) findViewById(R.id.chooseLanguage);
 
-        english  = (CheckBox) findViewById(R.id.english);
-        canfr  = (CheckBox) findViewById(R.id.canfr);
-        italian  = (CheckBox) findViewById(R.id.italian);
-/*
-        public void onCheckBoxClicked(View view;
-        view) {
-            boolean checked = ((CheckBox) view).isChecked();
-        }
-*/
+        selectButton = (Button) findViewById(R.id.btn);
+
+
+
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -106,12 +103,21 @@ public class MainActivity extends AppCompatActivity {
 
         // onHoverListener requires hardware support eg. stylus
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        // hitting the select button gets the selected language and changes the language to that
+        selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String data = button2.getText().toString();
+                // get selected radio button from radioGroup
+                int selectedId = radioLanguageGroup.getCheckedRadioButtonId();
+
+                // find the radiobutton by returned id
+                radioLanguageButton = (RadioButton) findViewById(selectedId);
+
+                // say the name of selected radio button
+                String data = radioLanguageButton.getText().toString();
                 Log.i("TTS","button clicked: " + data);
                 int speechStatus = textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null);
+
             }
         });
 

@@ -50,17 +50,8 @@
         android:text="@string/English"
         />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:elevation="0dp"
-        android:paddingHorizontal="30dp"
-        android:text="button 2"
-        />
-
     <RadioGroup
+        android:id="@+id/chooseLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -69,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton"
+            android:text="@string/English"
             android:checked="true"/>
 
         <RadioButton
@@ -77,32 +68,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:text="@string/French" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Italian" />
     </RadioGroup>
 
-    <CheckBox
-        android:id="@+id/english"
+    <Button
+        android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/English"
-        android:onClick="onCheckboxClicked"
+        android:layout_marginVertical="10dp"
+        android:elevation="0dp"
+        android:paddingHorizontal="30dp"
+        android:text="Select"
         />
 
-    <CheckBox
-        android:id="@+id/canfr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text= "Canadian French"
-        android:onClick="onCheckboxClicked"
-        />
 
-    <CheckBox
-        android:id="@+id/italian"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Italian"
-        android:onClick="onCheckboxClicked"
-        />
 
 
 
