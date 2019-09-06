@@ -113,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 // find the radiobutton by returned id
                 radioLanguageButton = (RadioButton) findViewById(selectedId);
 
+                /////////////////////////////////////////////////////////////////////////////////////////
+
                 // say the name of selected radio button
                 String data = radioLanguageButton.getText().toString();
                 Log.i("TTS","button clicked: " + data);
