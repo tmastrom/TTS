@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // onHoverListener requires hardware support eg. stylus
-
         // hitting the select button gets the selected language and changes the language to that
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
