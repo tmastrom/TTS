@@ -87,13 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 // say the name of selected radio button
                 String data = radioLanguageButton.getText().toString();
 
-                /*
-
-                English: en_CA
-                French Canadian: fr_CA
-                Italian: it
-
-                */
                 Locale.setDefault(new Locale (data, ""));
                 textToSpeech.setLanguage( Locale.getDefault());
 
