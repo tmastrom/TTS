@@ -4,6 +4,7 @@
     <string name="French">French</string>
     <string name="Italian">Italian</string>
     <string name="Language">Language Settings</string>
+    <string name="activity2_name">Spinner</string>
 
 
     <string-array name="languages_array">

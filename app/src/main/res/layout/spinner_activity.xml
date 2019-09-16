@@ -8,16 +8,29 @@
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context=".MainActivity">
+    tools:context=".SpinnerActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_horizontal"
+        android:text="Choose your language from the list"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:spinnerMode="dropdown"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="@android:drawable/btn_dropdown"       />
 
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MainMenu"
+        android:onClick="MainMenu"
         />
-
 </LinearLayout>

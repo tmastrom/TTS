@@ -1,15 +1,25 @@
 package com.example.ttsexample;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.speech.tts.TextToSpeech;
 
-public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+import com.example.ttsexample.MainActivity;
+
+/*
+TODO: Narrate dropdown list options
+*
+*/
+
+public class SpinnerActivity extends MainActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner spinnerLanguage;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,11 +39,17 @@ public class SpinnerActivity extends Activity implements AdapterView.OnItemSelec
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // How to pass selected item to TTS to be narrated?
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void MainMenu(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 }
