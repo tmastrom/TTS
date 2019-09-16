@@ -1,5 +1,6 @@
 package com.example.ttsexample;
 
+import android.provider.MediaStore;
 import android.speech.tts.Voice;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ https://javapapers.com/android/android-text-to-speech-tutorial/#targetText=It%20
 TODO: implement setVoice method for changing speed
 TODO: experiment with volume control
 TODO: implement checkbox for changing language
+TODO: add lifecycle features
+TODO: dropdown list of languages
 radio button in radio group -
  */
 
@@ -36,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private Button button1;
     private EditText editText;
     private RadioGroup radioLanguageGroup;
-    private Button selectButton;
     private RadioButton radioLanguageButton;
 
 
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         button1 = (Button) findViewById(R.id.button1);
         editText = (EditText) findViewById(R.id.et);
         radioLanguageGroup = (RadioGroup) findViewById(R.id.chooseLanguage);
-        selectButton = (Button) findViewById(R.id.btn);
+
 
         /*
         When button is clicked, speak the string in the editText field
@@ -74,27 +76,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // hitting the select button gets the selected language and changes the language to that
-        selectButton.setOnClickListener(new View.OnClickListener() {
+
+        radioLanguageGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                // get selected radio button from radioGroup
-                int selectedId = radioLanguageGroup.getCheckedRadioButtonId();
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = (RadioButton) group.findViewById(checkedId);
 
-                // find the radiobutton by returned id
-                radioLanguageButton = (RadioButton) findViewById(selectedId);
+                if (rb != null) {
+                    switch(checkedId) {
+                        case R.id.rbEnglish:
+                            textToSpeech.setLanguage(Locale.CANADA);
+                            textToSpeech.speak("Canadian English",TextToSpeech.QUEUE_FLUSH, null);
+                            break;
 
-                // say the name of selected radio button
-                String data = radioLanguageButton.getText().toString();
-
-                Locale.setDefault(new Locale (data, ""));
-                textToSpeech.setLanguage( Locale.getDefault());
-
-                Log.i("SELECT","button clicked: " + Locale.getDefault().toString());
-                int speechStatus = textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null);
-
+                        case R.id.rbFrench:
+                            textToSpeech.setLanguage(Locale.CANADA_FRENCH);
+                            textToSpeech.speak("French",TextToSpeech.QUEUE_FLUSH, null);
+                            break;
+                        case R.id.rbItalian:
+                            textToSpeech.setLanguage(Locale.ITALIAN);
+                            textToSpeech.speak("Italian",TextToSpeech.QUEUE_FLUSH, null);
+                            break;
+                    }
+                }
             }
         });
+
 
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
