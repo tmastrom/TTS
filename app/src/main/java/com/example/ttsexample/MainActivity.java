@@ -25,7 +25,7 @@ https://javapapers.com/android/android-text-to-speech-tutorial/#targetText=It%20
 
 TODO: implement setVoice method for changing speed
 TODO: experiment with volume control
-TODO: implement checkbox for changing language
+TODO: implement checkbox for changing language -- DONE
 TODO: add lifecycle features
 TODO: dropdown list of languages
 radio button in radio group -
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     // declare xml layout objects
     private TextToSpeech textToSpeech;
     private Button button;
-    private Button button1;
     private EditText editText;
     private RadioGroup radioLanguageGroup;
     private RadioButton radioLanguageButton;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         button = (Button) findViewById(R.id.button);
-        button1 = (Button) findViewById(R.id.button1);
         editText = (EditText) findViewById(R.id.et);
         radioLanguageGroup = (RadioGroup) findViewById(R.id.chooseLanguage);
 
@@ -63,16 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("BTN","button clicked: " + data);
                 int speechStatus = textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null);
 
-            }
-        });
-
-        // when button is clicked, speak the button text field
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String data = button1.getText().toString();
-                Log.i("BTN","button clicked: " + data);
-                int speechStatus = textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
