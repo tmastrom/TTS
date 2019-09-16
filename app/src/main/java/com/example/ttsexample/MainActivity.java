@@ -9,29 +9,35 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 /*
 
 project based on tts tutorial
 https://javapapers.com/android/android-text-to-speech-tutorial/#targetText=It%20has%20a%20LinearLayout%20with,convert%20the%20text%20to%20speech.
+TODO: add intent from main activity to spinner activity
+TODO: dropdown list of languages
 
 TODO: implement setVoice method for changing speed
 TODO: experiment with volume control
-TODO: implement checkbox for changing language -- DONE
 TODO: add lifecycle features
-TODO: dropdown list of languages
-radio button in radio group -
+
+
+TODO: implement checkbox for changing language -- DONE
+
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     // declare xml layout objects
     private TextToSpeech textToSpeech;
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private RadioGroup radioLanguageGroup;
     private RadioButton radioLanguageButton;
+
 
 
     @Override
@@ -49,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
         editText = (EditText) findViewById(R.id.et);
         radioLanguageGroup = (RadioGroup) findViewById(R.id.chooseLanguage);
+
+
 
 
         /*
@@ -91,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -130,5 +143,10 @@ public class MainActivity extends AppCompatActivity {
             textToSpeech.stop();
             textToSpeech.shutdown();
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }
