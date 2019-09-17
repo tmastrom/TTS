@@ -1,5 +1,6 @@
 package com.example.ttsexample;
 
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.speech.tts.Voice;
 import android.support.v7.app.AppCompatActivity;
@@ -9,29 +10,35 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 /*
 
 project based on tts tutorial
 https://javapapers.com/android/android-text-to-speech-tutorial/#targetText=It%20has%20a%20LinearLayout%20with,convert%20the%20text%20to%20speech.
+TODO: add intent from main activity to spinner activity -- DONE
+TODO: dropdown list of languages -- DONE
 
 TODO: implement setVoice method for changing speed
 TODO: experiment with volume control
-TODO: implement checkbox for changing language -- DONE
 TODO: add lifecycle features
-TODO: dropdown list of languages
-radio button in radio group -
+
+
+TODO: implement checkbox for changing language -- DONE
+
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     // declare xml layout objects
     private TextToSpeech textToSpeech;
@@ -39,7 +46,13 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private RadioGroup radioLanguageGroup;
     private RadioButton radioLanguageButton;
+    private Button buttonSetLanguage;
 
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
         editText = (EditText) findViewById(R.id.et);
         radioLanguageGroup = (RadioGroup) findViewById(R.id.chooseLanguage);
-
+        buttonSetLanguage = (Button) findViewById(R.id.buttonLanguageSettings);
 
         /*
         When button is clicked, speak the string in the editText field
@@ -60,10 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 String data = editText.getText().toString();
                 Log.i("BTN","button clicked: " + data);
                 int speechStatus = textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null);
-
             }
         });
-
 
         radioLanguageGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -74,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     switch(checkedId) {
                         case R.id.rbEnglish:
                             textToSpeech.setLanguage(Locale.CANADA);
-                            textToSpeech.speak("Canadian English",TextToSpeech.QUEUE_FLUSH, null);
+                            textToSpeech.speak("English",TextToSpeech.QUEUE_FLUSH, null);
                             break;
 
                         case R.id.rbFrench:
@@ -90,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -102,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                     String data = radioLanguageButton.getText().toString();
                     Log.i("TTS","button clicked: " + data);
 
+
+                    // is this line actually setting the language??
                     int ttsLang = textToSpeech.setLanguage(new Locale (data, ""));
 
                     if (ttsLang == TextToSpeech.LANG_MISSING_DATA || ttsLang == TextToSpeech.LANG_NOT_SUPPORTED){
@@ -119,9 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
 
     @Override
     protected void onDestroy() {
@@ -130,5 +140,16 @@ public class MainActivity extends AppCompatActivity {
             textToSpeech.stop();
             textToSpeech.shutdown();
         }
+    }
+
+    // method to switch intents based on the button click
+    public void LanguageMenu(View view) {
+        Intent i = new Intent(this, SpinnerActivity.class);
+        startActivity(i);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }

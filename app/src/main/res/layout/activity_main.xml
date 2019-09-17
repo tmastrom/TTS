@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:gravity="center_horizontal"
-        android:text="Android Text to Speech "
+        android:text="Text to Speech"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <EditText
@@ -71,5 +71,14 @@
             android:text="@string/Italian"
             android:checked="true"/>
     </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonLanguageSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Language"
+        android:onClick="LanguageMenu"
+         />
+
 
 </LinearLayout>
