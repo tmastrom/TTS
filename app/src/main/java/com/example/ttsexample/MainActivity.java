@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private EditText editText;
     private RadioGroup radioLanguageGroup;
     private RadioButton radioLanguageButton;
-    private Button buttonSetLanguage;
+
 
 
     @Override
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         button = (Button) findViewById(R.id.button);
         editText = (EditText) findViewById(R.id.et);
         radioLanguageGroup = (RadioGroup) findViewById(R.id.chooseLanguage);
-        buttonSetLanguage = (Button) findViewById(R.id.buttonLanguageSettings);
+
 
         /*
         When button is clicked, speak the string in the editText field
@@ -105,16 +105,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS){
-
+/*
                     // from radio group
                     int selectedId = radioLanguageGroup.getCheckedRadioButtonId();
                     radioLanguageButton = (RadioButton) findViewById(selectedId);
-                    String data = radioLanguageButton.getText().toString();
+                    String data = radioLanguageButton.getText().toString();     // error when settings button is clicked
                     Log.i("TTS","button clicked: " + data);
-
+*/
 
                     // is this line actually setting the language??
-                    int ttsLang = textToSpeech.setLanguage(new Locale (data, ""));
+                    int ttsLang = textToSpeech.setLanguage(Locale.CANADA);
 
                     if (ttsLang == TextToSpeech.LANG_MISSING_DATA || ttsLang == TextToSpeech.LANG_NOT_SUPPORTED){
                         // log.e is an error message
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    // method to switch intents based on the button click
+    // method to switch Activities based on the button click
     public void LanguageMenu(View view) {
         Intent i = new Intent(this, SpinnerActivity.class);
         startActivity(i);
