@@ -1,4 +1,4 @@
-Simple text-to-speech android application based on https://javapapers.com/android/android-text-to-speech-tutorial/
+Simple text-to-speech android application
 
 ![Main Activity](https://github.com/tmastrom/TTS/blob/master/MainActivity.PNG)
 
